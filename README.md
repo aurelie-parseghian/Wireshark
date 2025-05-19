@@ -1,38 +1,45 @@
-# Analyse Réseau avec Wireshark et TShark
-
-## Introduction
-
-**Wireshark** est un logiciel open source d’analyse des protocoles réseau créé par Gerald Combs en 1998. Il est utilisé par des agences gouvernementales, de grandes entreprises, des organisations à but non lucratif et des établissements pédagogiques pour résoudre des problèmes réseau et former à l’analyse réseau.
-
-Wireshark est un outil de **capture et d’analyse de paquets**. Il permet de capturer le trafic réseau local et d’analyser les données collectées hors ligne. Il supporte de nombreux types de trafic, tels que :
-- Ethernet
-- Bluetooth
-- Réseaux sans fil (IEEE 802.11)
-- Token Ring
-- Frame Relay
-- Et bien plus encore
-
-> **Remarque** : un « paquet » est un message d’un protocole réseau (ex. : TCP, DNS, etc.)
+# Analyse et Capture Réseau avec Wireshark et TShark
 
 ---
 
-## Concepts Clés
+## Présentation
 
-### Trame vs Paquet
+Wireshark est un logiciel open source d’analyse des protocoles réseau, créé en 1998 par Gerald Combs.  
+Il est largement utilisé par des agences gouvernementales, des entreprises, des organisations à but non lucratif et des établissements pédagogiques pour diagnostiquer des problèmes réseau, analyser le trafic et réaliser des formations.
 
-- **Trame** : bloc de données transmis sur la **liaison de données** (ex. : Ethernet, ATM).
-- **Paquet** : bloc de données transmis sur la **couche réseau** (ex. : IP).
+Wireshark permet de **capturer** et **analyser** les paquets échangés sur un réseau local.  
+Il supporte plusieurs types de réseaux comme Ethernet, Bluetooth, réseaux sans fil (IEEE 802.11), Token Ring, Frame Relay, etc.
 
-### Formats de fichiers : PCAP et PCAPNG
-
-- **PCAP (Packet CAPture)** : format de capture de paquets utilisé pour analyser et diagnostiquer les réseaux.
-- **PCAPNG (PCAP Next Generation)** : format plus évolué principalement utilisé par Wireshark, qui permet d’enregistrer des captures réseau avec plus de détails et de flexibilité.
+> **Note :** Un paquet est un message transporté par un protocole réseau (ex : TCP, DNS).
 
 ---
 
-## Installation de Wireshark sur Debian
+## Concepts clés
+
+### Différence entre trame et paquet
+
+- **Trame** : Bloc de données transmis sur la couche liaison (ex : Ethernet, ATM).  
+- **Paquet** : Bloc de données transmis sur la couche réseau (ex : IP).
+
+### Formats de fichiers de capture
+
+- **PCAP** : Format classique pour enregistrer les captures réseau.  
+- **PCAPNG** : Format amélioré utilisé par Wireshark, qui permet d’enregistrer plus d’informations (métadonnées, interfaces multiples, etc.).
+
+---
+
+## Installation sur Debian
+
+Pour installer Wireshark et le configurer correctement pour un usage utilisateur :
 
 ```bash
+sudo apt-get update
 sudo apt-get install wireshark
-sudo dpkg-reconfigure wireshark-common  # pour configurer les privilèges utilisateurs
-sudo adduser $USER wireshark            # ajouter l’utilisateur au groupe Wireshark
+sudo dpkg-reconfigure wireshark-common  # Configure les droits d'accès
+sudo adduser $USER wireshark            # Ajoute l'utilisateur au groupe wireshark
+
+### Analyse réseau avec curl et Wireshark
+
+Exemple d’utilisation de curl pour générer du trafic TCP :
+sudo apt install curl
+curl alcasar.laplateforme.io
