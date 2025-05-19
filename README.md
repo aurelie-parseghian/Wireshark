@@ -39,6 +39,8 @@ sudo dpkg-reconfigure wireshark-common  # Configure les droits d'accès
 sudo adduser $USER wireshark            # Ajoute l'utilisateur au groupe wireshark
 ```
 
+<img src="/screen/1.png" alt="Capture d'écran"/>
+
 ---
 
 ### Analyse réseau avec curl et Wireshark
@@ -52,12 +54,35 @@ Cette commande permet d’envoyer des requêtes HTTP et d’observer le trafic T
 
 ---
 
+### Diagramme
+
+<img src="/screen/2.png" alt="Capture d'écran"/>
+
+---
+
+<img src="/screen/3.png" alt="Capture d'écran"/>
+<img src="/screen/4.png" alt="Capture d'écran"/>
+<img src="/screen/5.png" alt="Capture d'écran"/>
+<img src="/screen/6.png" alt="Capture d'écran"/>
+<img src="/screen/7.png" alt="Capture d'écran"/>
+<img src="/screen/8.png" alt="Capture d'écran"/>
+<img src="/screen/9.png" alt="Capture d'écran"/>
+<img src="/screen/10.png" alt="Capture d'écran"/>
+<img src="/screen/11.png" alt="Capture d'écran"/>
+<img src="/screen/12.png" alt="Capture d'écran"/>
+
+---
+
 ### Sécurité : FTP vs TLS
 Lors de la capture :
 
 FTP : Protocole non sécurisé, les informations sont visibles en clair dans la capture (identifiants, commandes, données).
 
 TLS : Protocole sécurisé, les données sont chiffrées, rendant leur lecture impossible sans la clé de chiffrement.
+
+<img src="/screen/13.png" alt="Capture d'écran"/>
+
+<img src="/screen/14.png" alt="Capture d'écran"/>
 
 ---
 
@@ -70,6 +95,9 @@ Capture d’un trafic spécifique (ex : FTP sur port 21)
 ```
 sudo tshark -i ens33 -f "port 21" -w ftp_capture.pcapng
 ```
+
+<img src="/screen/15.png" alt="Capture d'écran"/>
+
 ### Gestion du fichier de capture
 La capture est enregistrée par défaut dans /root (car la commande est lancée avec sudo).
 
@@ -86,6 +114,8 @@ Pour capturer un nombre défini de paquets (par exemple 100) :
 ```
 sudo tshark -i ens33 -f "port 21" -c 100 -w ftp_capture_limited.pcapng
 ```
+
+<img src="/screen/16.png" alt="Capture d'écran"/>
 
 ---
 
