@@ -32,14 +32,63 @@ Il supporte plusieurs types de réseaux comme Ethernet, Bluetooth, réseaux sans
 
 Pour installer Wireshark et le configurer correctement pour un usage utilisateur :
 
-```bash
+```
 sudo apt-get update
 sudo apt-get install wireshark
 sudo dpkg-reconfigure wireshark-common  # Configure les droits d'accès
 sudo adduser $USER wireshark            # Ajoute l'utilisateur au groupe wireshark
+```
+
+---
 
 ### Analyse réseau avec curl et Wireshark
 
 Exemple d’utilisation de curl pour générer du trafic TCP :
+```
 sudo apt install curl
 curl alcasar.laplateforme.io
+```
+Cette commande permet d’envoyer des requêtes HTTP et d’observer le trafic TCP associé dans Wireshark.
+
+---
+
+### Sécurité : FTP vs TLS
+Lors de la capture :
+
+FTP : Protocole non sécurisé, les informations sont visibles en clair dans la capture (identifiants, commandes, données).
+
+TLS : Protocole sécurisé, les données sont chiffrées, rendant leur lecture impossible sans la clé de chiffrement.
+
+---
+
+## Utilisation de TShark (interface en ligne de commande de Wireshark)
+### Installation
+```
+sudo apt install tshark
+```
+Capture d’un trafic spécifique (ex : FTP sur port 21)
+```
+sudo tshark -i ens33 -f "port 21" -w ftp_capture.pcapng
+```
+### Gestion du fichier de capture
+La capture est enregistrée par défaut dans /root (car la commande est lancée avec sudo).
+
+Pour déplacer le fichier vers votre dossier utilisateur :
+```
+sudo mv /root/ftp_capture.pcapng /home/aurelie/
+```
+Pour permettre l’ouverture du fichier par l’utilisateur :
+```
+sudo chown aurelie:aurelie /home/aurelie/ftp_capture.pcapng
+```
+### Limiter le nombre de paquets capturés
+Pour capturer un nombre défini de paquets (par exemple 100) :
+```
+sudo tshark -i ens33 -f "port 21" -c 100 -w ftp_capture_limited.pcapng
+```
+
+---
+
+## Remarques finales
+Wireshark est un outil puissant pour comprendre et analyser le fonctionnement des réseaux.
+Son utilisation demande une bonne connaissance des protocoles réseau et des bonnes pratiques pour garantir la sécurité des données capturées.
